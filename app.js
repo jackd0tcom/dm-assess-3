@@ -92,6 +92,7 @@ app.get("/top-fossils", (req, res) => {
 app.get("/random-fossil.json", (req, res) => {
   const randomFossil = lodash.sample(OTHER_FOSSILS);
   res.json(randomFossil);
+  console.log("app");
 });
 
 app.post("/like-fossil", (req, res) => {
@@ -100,6 +101,10 @@ app.post("/like-fossil", (req, res) => {
   let likes = MOST_LIKED_FOSSILS[liked_fossils].num_likes;
   likes += 1;
   res.render("thank-you.html.njk", { name: name });
+});
+
+app.get("/secrets", (req, res) => {
+  res.render("secret-file.html.njk");
 });
 
 ViteExpress.listen(app, port, () => {
